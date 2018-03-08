@@ -8,7 +8,7 @@
       fixed
       app
     >
-        <v-toolbar flat>
+        <v-toolbar color="filter" flat>
           <v-list>
             <v-list-tile>
               <v-list-title>
@@ -21,14 +21,23 @@
         <v-expansion-panel popout>
           <v-expansion-panel-content>
               <div slot="header">Was</div>
-                <v-card>
+                <v-card color="accent">
                   <v-switch v-for="category in categories" :label="category" v-model="checkCategory" :value="category"></v-switch>
+                </v-card>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel popout>
+          <v-expansion-panel-content>
+              <div slot="header">Wo</div>
+                <v-card color="accent">
+                  <v-switch v-for="city in cities" :label="city" v-model="checkCity" :value="city"></v-switch>
                 </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-navigation-drawer>
 
     <v-toolbar
+      color="navbar"
       app
       :clipped-left="clipped"
     >
@@ -50,6 +59,7 @@
       <template slot="items" slot-scope="props">
       <td>{{ props.item.name }}</td>
       <td>{{ props.item.category }}</td>
+      <td>{{ props.item.city }}</td>
       </template>
     </v-data-table>
     </v-content>
@@ -62,6 +72,17 @@
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import colors from 'vuetify/es5/util/colors'
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify, {
+  theme: {
+    navbar: colors.lime.lighten1,
+    filter: colors.lime.lighten3,
+    accent: colors.lime.lighten5
+  }
+})
 
 export default {
   data () {
@@ -69,6 +90,7 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+      checkCity: [],
       checkCategory: [],
       items: [{
         icon: 'location_city',
@@ -77,15 +99,12 @@ export default {
         icon: 'location_city',
         title: 'Was'
       }],
-      cities: [{
-        name: 'Hamburg',
-        key: 'Hamburg',
-        box: false
-      },{
-        name: 'Düsseldorf',
-        key: 'Düsseldorf',
-        box: false
-      }],
+      cities: [
+        "Hamburg",
+        'Düsseldorf',
+        'Köln',
+        'Bielefeld'
+      ],
       categories: [
         "Spielplatz",
         "Theater",
@@ -100,20 +119,37 @@ export default {
       },{
         text: 'Was',
         value: 'category'
+      },{
+        text: 'Wo',
+        value: 'city'
       }],
       data: [{
-        name: 'Der Test01',
+        name: 'Der Test 01',
         category: 'Spielplatz',
         city: 'Hamburg',
         morning: true,
         afternoon: true,
         evening: true
       },{
-        name: 'Der Test02',
+        name: 'Der Test 02',
         category: 'Theater',
         city: 'Düsseldorf',
         morning: true,
         afternoon: true,
+        evening: true
+      },{
+        name: 'Der Test 03',
+        category: 'Festival',
+        city: 'Bielefeld',
+        morning: false,
+        afternoon: true,
+        evening: true
+      },{
+        name: 'Der Test 04',
+        category: 'Konzert',
+        city: 'Hamburg',
+        morning: false,
+        afternoon: false,
         evening: true
       }],
       title: 'Didelidu'
@@ -126,6 +162,12 @@ export default {
       if (this.checkCategory.length > 0){
         filterData = filterData.filter(data => {
           return this.checkCategory.includes(data.category)
+        })
+      }
+
+      if (this.checkCity.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkCity.includes(data.city)
         })
       }
 
