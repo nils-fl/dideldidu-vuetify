@@ -1,4 +1,4 @@
-# didelidu_veutify
+# Dideldidu
 
 > A Vue.js project
 

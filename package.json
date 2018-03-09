@@ -1,7 +1,7 @@
 {
-  "name": "didelidu_veutify",
+  "name": "Dideldidu",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Kinderprogramm in deiner Stadt",
   "author": "nilsflaschel <n.flaschel@gmail.com>",
   "private": true,
   "scripts": {
