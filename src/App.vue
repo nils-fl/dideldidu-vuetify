@@ -33,6 +33,14 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <v-expansion-panel popout>
+        <v-expansion-panel-content>
+          <div slot="header">Wann</div>
+          <v-card>
+            <v-switch v-for="daytime in daytimes" :label="daytime" v-model="checkDaytime" :value="daytime"></v-switch>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </v-navigation-drawer>
 
     <v-toolbar
@@ -81,11 +89,6 @@
                         <span>Details</span>
                         <v-spacer></v-spacer>
                         <v-menu bottom left>
-                          <v-list>
-                            <v-list-tile v-for="(item, i) in items" :key="i" @click="">
-                              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                            </v-list-tile>
-                          </v-list>
                         </v-menu>
                       </v-card-title>
                       <v-card-actions>
@@ -121,6 +124,7 @@ export default {
       details: false,
       checkCity: [],
       checkCategory: [],
+      checkDaytime: [],
       items: [{
         icon: 'location_city',
         title: 'Wo'
@@ -142,6 +146,14 @@ export default {
         "Musik",
         "Museum"
       ],
+      daytimes: [
+        "Morgens",
+        "Morgens und Nachmittags",
+        "Morgens bis Abends",
+        "Nachmittags",
+        "Nachmittags und Abends",
+        "Abends"
+      ],
       headers:[{
         text: 'Name',
         value: 'name'
@@ -159,19 +171,23 @@ export default {
       data: [{
         name: 'Der Test 01',
         category: 'Spielplatz',
-        city: 'Hamburg'
+        city: 'Hamburg',
+        daytime: 'Morgens und Nachmittags'
       },{
         name: 'Der Test 02',
         category: 'Theater',
-        city: 'Düsseldorf'
+        city: 'Düsseldorf',
+        daytime: 'Nachmittags'
       },{
         name: 'Der Test 03',
         category: 'Festival',
-        city: 'Bielefeld'
+        city: 'Bielefeld',
+        daytime: 'Nachmittags und Abends'
       },{
         name: 'Der Test 04',
         category: 'Konzert',
-        city: 'Hamburg'
+        city: 'Hamburg',
+        daytime: 'Abends'
       }],
       title: 'Dideldidu'
     }
@@ -189,6 +205,12 @@ export default {
       if (this.checkCity.length > 0){
         filterData = filterData.filter(data => {
           return this.checkCity.includes(data.city)
+        })
+      }
+
+      if (this.checkDaytime.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkDaytime.includes(data.daytime)
         })
       }
 
