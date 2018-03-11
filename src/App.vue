@@ -37,7 +37,9 @@
         <v-expansion-panel-content>
           <div slot="header">Wann</div>
           <v-card>
-            <v-switch v-for="daytime in daytimes" :label="daytime" v-model="checkDaytime" :value="daytime"></v-switch>
+            <v-switch label="Morgens" v-model="checkMorning" value="Morgens"></v-switch>
+            <v-switch label="Nachmittags" v-model="checkAfternoon" value="Nachmittags"></v-switch>
+            <v-switch label="Abends" v-model="checkEvening" value="Abends"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -124,7 +126,9 @@ export default {
       details: false,
       checkCity: [],
       checkCategory: [],
-      checkDaytime: [],
+      checkMorning: [],
+      checkAfternoon: [],
+      checkEvening: [],
       items: [{
         icon: 'location_city',
         title: 'Wo'
@@ -146,14 +150,6 @@ export default {
         "Musik",
         "Museum"
       ],
-      daytimes: [
-        "Morgens",
-        "Morgens und Nachmittags",
-        "Morgens bis Abends",
-        "Nachmittags",
-        "Nachmittags und Abends",
-        "Abends"
-      ],
       headers:[{
         text: 'Name',
         value: 'name'
@@ -172,22 +168,30 @@ export default {
         name: 'Der Test 01',
         category: 'Spielplatz',
         city: 'Hamburg',
-        daytime: 'Morgens und Nachmittags'
+        morning: 'Morgens',
+        afternoon: 'Nachmittags',
+        evening: ''
       },{
         name: 'Der Test 02',
         category: 'Theater',
         city: 'Düsseldorf',
-        daytime: 'Nachmittags'
+        morning: '',
+        afternoon: 'Nachmittags',
+        evening: ''
       },{
         name: 'Der Test 03',
         category: 'Festival',
         city: 'Bielefeld',
-        daytime: 'Nachmittags und Abends'
+        morning: '',
+        afternoon: 'Nachmittags',
+        evening: 'Abends'
       },{
         name: 'Der Test 04',
         category: 'Konzert',
         city: 'Hamburg',
-        daytime: 'Abends'
+        morning: '',
+        afternoon: '',
+        evening: 'Abends'
       }],
       title: 'Dideldidu'
     }
@@ -208,9 +212,21 @@ export default {
         })
       }
 
-      if (this.checkDaytime.length > 0){
+      if (this.checkMorning.length > 0){
         filterData = filterData.filter(data => {
-          return this.checkDaytime.includes(data.daytime)
+          return this.checkMorning.includes(data.morning)
+        })
+      }
+
+      if (this.checkAfternoon.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAfternoon.includes(data.afternoon)
+        })
+      }
+
+      if (this.checkEvening.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkEvening.includes(data.evening)
         })
       }
 
