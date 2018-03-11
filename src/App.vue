@@ -37,9 +37,9 @@
         <v-expansion-panel-content>
           <div slot="header">Wann</div>
           <v-card>
-            <v-switch label="Morgens" v-model="checkMorning" value="Morgens"></v-switch>
-            <v-switch label="Nachmittags" v-model="checkAfternoon" value="Nachmittags"></v-switch>
-            <v-switch label="Abends" v-model="checkEvening" value="Abends"></v-switch>
+            <v-switch label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
+            <v-switch label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
+            <v-switch label="Abends" v-model="checkEvening" value="Ja"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -168,30 +168,30 @@ export default {
         name: 'Der Test 01',
         category: 'Spielplatz',
         city: 'Hamburg',
-        morning: 'Morgens',
-        afternoon: 'Nachmittags',
+        morning: 'Ja',
+        afternoon: 'Ja',
         evening: ''
       },{
         name: 'Der Test 02',
         category: 'Theater',
         city: 'Düsseldorf',
         morning: '',
-        afternoon: 'Nachmittags',
+        afternoon: 'Ja',
         evening: ''
       },{
         name: 'Der Test 03',
         category: 'Festival',
         city: 'Bielefeld',
         morning: '',
-        afternoon: 'Nachmittags',
-        evening: 'Abends'
+        afternoon: 'Ja',
+        evening: 'Ja'
       },{
         name: 'Der Test 04',
         category: 'Konzert',
         city: 'Hamburg',
         morning: '',
         afternoon: '',
-        evening: 'Abends'
+        evening: 'Ja'
       }],
       title: 'Dideldidu'
     }
@@ -200,30 +200,35 @@ export default {
     filteredData: function(){
       let filterData = this.data
 
+      // Filter vor categories
       if (this.checkCategory.length > 0){
         filterData = filterData.filter(data => {
           return this.checkCategory.includes(data.category)
         })
       }
 
+      // Filter for cities
       if (this.checkCity.length > 0){
         filterData = filterData.filter(data => {
           return this.checkCity.includes(data.city)
         })
       }
 
+      // Filter for morning
       if (this.checkMorning.length > 0){
         filterData = filterData.filter(data => {
           return this.checkMorning.includes(data.morning)
         })
       }
 
+      // Filter for afternoon
       if (this.checkAfternoon.length > 0){
         filterData = filterData.filter(data => {
           return this.checkAfternoon.includes(data.afternoon)
         })
       }
 
+      // Filter for evening
       if (this.checkEvening.length > 0){
         filterData = filterData.filter(data => {
           return this.checkEvening.includes(data.evening)
