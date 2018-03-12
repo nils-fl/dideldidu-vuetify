@@ -21,7 +21,7 @@
         <v-expansion-panel-content>
           <div slot="header">Was</div>
           <v-card>
-            <v-switch v-for="category in categories" :label="category" v-model="checkCategory" :value="category"></v-switch>
+            <v-switch class='myswitch' v-for="category in categories" :label="category" v-model="checkCategory" :value="category"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -29,7 +29,7 @@
         <v-expansion-panel-content>
           <div slot="header">Wo</div>
           <v-card>
-            <v-switch v-for="city in cities" :label="city" v-model="checkCity" :value="city"></v-switch>
+            <v-switch class='myswitch' v-for="city in cities" :label="city" v-model="checkCity" :value="city"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -37,9 +37,30 @@
         <v-expansion-panel-content>
           <div slot="header">Wann</div>
           <v-card>
-            <v-switch label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
-            <v-switch label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
-            <v-switch label="Abends" v-model="checkEvening" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="Abends" v-model="checkEvening" value="Ja"></v-switch>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel popout>
+        <v-expansion-panel-content>
+          <div slot="header">Welches Alter</div>
+          <v-card>
+            <v-switch class='myswitch' label="Alle" v-model="checkAgeAll" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="0 bis 1" v-model="checkAge0_1" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="1 bis 3" v-model="checkAge1_3" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="3 bis 6" v-model="checkAge3_6" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="6 bis 10" v-model="checkAge6_10" value="Ja"></v-switch>
+            <v-switch class='myswitch' label="10 bis 15" v-model="checkAge10_15" value="Ja"></v-switch>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel popout>
+        <v-expansion-panel-content>
+          <div slot="header">Kosten</div>
+          <v-card>
+            <v-switch class='myswitch' label="Kostenlos" v-model="checkCosts" value="Ja"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -77,30 +98,31 @@
               no-results-text="Keine Einträge gefunden"
               rows-per-page-text="Zeilen pro Seite"
               :search="search"
+              item-key="name"
               >
             <template slot="items" slot-scope="props">
               <tr @click="props.expanded = !props.expanded">
+
                 <td>{{ props.item.name }}</td>
                 <td>{{ props.item.category }}</td>
                 <td>{{ props.item.city }}</td>
-                <td class="text-xs-center">
-                  <v-btn color="primary" dark @click.stop="details = true">Details</v-btn>
-                  <v-dialog v-model="details" max-width="500px">
-                    <v-card>
-                      <v-card-title>
-                        <span>Details</span>
-                        <v-spacer></v-spacer>
-                        <v-menu bottom left>
-                        </v-menu>
-                      </v-card-title>
-                      <v-card-actions>
-                        <v-btn color="primary" flat @click.stop="details=false">Schließen</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                </td>
               </tr>
-            </template>
+              </template>
+              <template slot="expand" slot-scope="props">
+               <v-card flat>
+                 <v-layout row wrap>
+                   <v-flex xs6>
+                     <v-card-text><h4>Name:</h4> {{ props.item.name }}</v-card-text>
+                     <v-card-text><h4>Kategorie:</h4> {{ props.item.category }}</v-card-text>
+                     <v-card-text v-if="props.item.costs == 'Ja'"><h4>Kostelos</h4></v-card-text>
+                   </v-flex>
+                   <v-flex xs6>
+                     <v-card-text><h4>Stadt:</h4> {{ props.item.city }}</v-card-text>
+                     <v-card-text><h4>PLZ:</h4> {{ props.item.zip }}</v-card-text>
+                   </v-flex>
+                 </v-layout>
+               </v-card>
+             </template>
           </v-data-table>
         </v-flex>
       </v-layout>
@@ -129,6 +151,13 @@ export default {
       checkMorning: [],
       checkAfternoon: [],
       checkEvening: [],
+      checkAge0_1: [],
+      checkAge1_3: [],
+      checkAge3_6: [],
+      checkAge6_10: [],
+      checkAge10_15: [],
+      checkAgeAll: [],
+      checkCosts: [],
       items: [{
         icon: 'location_city',
         title: 'Wo'
@@ -159,39 +188,67 @@ export default {
       },{
         text: 'Wo',
         value: 'city'
-      },{
-        text: 'Mehr',
-        value: 'mehr',
-        align: 'center'
       }],
       data: [{
         name: 'Der Test 01',
         category: 'Spielplatz',
         city: 'Hamburg',
+        zip: '20253',
         morning: 'Ja',
         afternoon: 'Ja',
-        evening: ''
+        evening: '',
+        ageAll: 'Ja',
+        age0_1: 'Ja',
+        age1_3: 'Ja',
+        age3_6: 'Ja',
+        age6_10: 'Ja',
+        age10_15: 'Ja',
+        costs: 'Ja'
       },{
         name: 'Der Test 02',
         category: 'Theater',
         city: 'Düsseldorf',
+        zip: '12345',
         morning: '',
         afternoon: 'Ja',
-        evening: ''
+        evening: '',
+        ageAll: 'Ja',
+        age0_1: '',
+        age1_3: '',
+        age3_6: 'Ja',
+        age6_10: 'Ja',
+        age10_15: 'Ja',
+        costs: ''
       },{
         name: 'Der Test 03',
         category: 'Festival',
         city: 'Bielefeld',
+        zip: '12345',
         morning: '',
         afternoon: 'Ja',
-        evening: 'Ja'
+        evening: 'Ja',
+        ageAll: 'Ja',
+        age0_1: '',
+        age1_3: '',
+        age3_6: 'Ja',
+        age6_10: 'Ja',
+        age10_15: 'Ja',
+        costs: ''
       },{
         name: 'Der Test 04',
         category: 'Konzert',
         city: 'Hamburg',
+        zip: '12345',
         morning: '',
         afternoon: '',
-        evening: 'Ja'
+        evening: '',
+        ageAll: 'Ja',
+        age0_1: '',
+        age1_3: '',
+        age3_6: '',
+        age6_10: 'Ja',
+        age10_15: 'Ja',
+        costs: ''
       }],
       title: 'Dideldidu'
     }
@@ -235,6 +292,55 @@ export default {
         })
       }
 
+      //Filter for age 0-1
+      if (this.checkAge0_1.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAge0_1.includes(data.age0_1)
+        })
+      }
+
+      //Filter for age 1-3
+      if (this.checkAge1_3.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAge1_3.includes(data.age1_3)
+        })
+      }
+
+      //Filter for age 3-6
+      if (this.checkAge3_6.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAge3_6.includes(data.age3_6)
+        })
+      }
+
+      //Filter for age 6-10
+      if (this.checkAge6_10.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAge6_10.includes(data.age6_10)
+        })
+      }
+
+      //Filter for age 10-15
+      if (this.checkAge10_15.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAge10_15.includes(data.age10_15)
+        })
+      }
+
+      //Filter for age all
+      if (this.checkAgeAll.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkAgeAll.includes(data.ageAll)
+        })
+      }
+
+      //Filter for costs
+      if (this.checkCosts.length > 0){
+        filterData = filterData.filter(data => {
+          return this.checkCosts.includes(data.costs)
+        })
+      }
+
       return filterData
     }
   },
@@ -251,5 +357,8 @@ export default {
 .nav {
   background-color: #c7ecee;
   color: #eb4d4b;
+}
+.myswitch {
+  margin-left: 11px;
 }
 </style>
