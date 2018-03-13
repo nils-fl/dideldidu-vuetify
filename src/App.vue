@@ -66,15 +66,7 @@
       </v-expansion-panel>
     </v-navigation-drawer>
 
-    <v-toolbar
-      height="40"
-      color="navbar"
-      app
-      :clipped-left="clipped"
-      class="nav">
-      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
-       <v-toolbar-title v-text="title"></v-toolbar-title>
-    </v-toolbar>
+    <MyNavbar></MyNavbar>
 
     <v-content>
       <MyHeader></MyHeader>
@@ -137,6 +129,7 @@
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
+import MyNavbar from './components/MyNavbar'
 
 export default {
   data () {
@@ -176,7 +169,7 @@ export default {
         "Theater",
         "Festival",
         "Sport",
-        "Musik",
+        "Konzert",
         "Museum"
       ],
       headers:[{
@@ -249,8 +242,7 @@ export default {
         age6_10: 'Ja',
         age10_15: 'Ja',
         costs: ''
-      }],
-      title: 'Dideldidu'
+      }]
     }
   },
   computed: {
@@ -348,16 +340,13 @@ export default {
   components: {
     MyHeader,
     MyFooter,
-    MyForm
+    MyForm,
+    MyNavbar
   }
 }
 </script>
 
 <style scoped>
-.nav {
-  background-color: #c7ecee;
-  color: #eb4d4b;
-}
 .myswitch {
   margin-left: 11px;
 }
