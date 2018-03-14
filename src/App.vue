@@ -1,5 +1,7 @@
 <template>
   <v-app>
+
+<!-- left drawer containing the checkboxes to filter data -->
     <v-navigation-drawer
       persistent
       :clipped="clipped"
@@ -66,13 +68,17 @@
       </v-expansion-panel>
     </v-navigation-drawer>
 
+<!-- Navbar -->
     <MyNavbar></MyNavbar>
 
     <v-content>
+<!-- Header with background image -->
       <MyHeader></MyHeader>
 
       <v-layout row justify-center>
         <v-flex xs12 lg10>
+
+<!-- filter button and searchbar-->
           <v-card-title>
             <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
@@ -84,6 +90,8 @@
                 v-model="search">
             </v-text-field>
           </v-card-title>
+
+<!-- data table -->
           <v-data-table
               :headers="headers"
               :items="filteredData"
@@ -100,6 +108,8 @@
                 <td>{{ props.item.city }}</td>
               </tr>
               </template>
+
+    <!-- expander row -->
               <template slot="expand" slot-scope="props">
                <v-card flat>
                  <v-layout row wrap>
@@ -115,12 +125,17 @@
                  </v-layout>
                </v-card>
              </template>
+
           </v-data-table>
+
         </v-flex>
       </v-layout>
 
+<!-- contact form -->
       <MyForm></MyForm>
+<!-- footer -->
       <MyFooter></MyFooter>
+
     </v-content>
   </v-app>
 </template>
@@ -130,15 +145,18 @@ import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
 import MyNavbar from './components/MyNavbar'
+import json from './assets/data'
 
 export default {
   data () {
     return {
+      // Searchbar
       search: '',
+      // Drawer
       clipped: false,
       drawer: false,
       fixed: false,
-      details: false,
+      // checkboxes
       checkCity: [],
       checkCategory: [],
       checkMorning: [],
@@ -182,67 +200,7 @@ export default {
         text: 'Wo',
         value: 'city'
       }],
-      data: [{
-        name: 'Der Test 01',
-        category: 'Spielplatz',
-        city: 'Hamburg',
-        zip: '20253',
-        morning: 'Ja',
-        afternoon: 'Ja',
-        evening: '',
-        ageAll: 'Ja',
-        age0_1: 'Ja',
-        age1_3: 'Ja',
-        age3_6: 'Ja',
-        age6_10: 'Ja',
-        age10_15: 'Ja',
-        costs: 'Ja'
-      },{
-        name: 'Der Test 02',
-        category: 'Theater',
-        city: 'Düsseldorf',
-        zip: '12345',
-        morning: '',
-        afternoon: 'Ja',
-        evening: '',
-        ageAll: 'Ja',
-        age0_1: '',
-        age1_3: '',
-        age3_6: 'Ja',
-        age6_10: 'Ja',
-        age10_15: 'Ja',
-        costs: ''
-      },{
-        name: 'Der Test 03',
-        category: 'Festival',
-        city: 'Bielefeld',
-        zip: '12345',
-        morning: '',
-        afternoon: 'Ja',
-        evening: 'Ja',
-        ageAll: 'Ja',
-        age0_1: '',
-        age1_3: '',
-        age3_6: 'Ja',
-        age6_10: 'Ja',
-        age10_15: 'Ja',
-        costs: ''
-      },{
-        name: 'Der Test 04',
-        category: 'Konzert',
-        city: 'Hamburg',
-        zip: '12345',
-        morning: '',
-        afternoon: '',
-        evening: '',
-        ageAll: 'Ja',
-        age0_1: '',
-        age1_3: '',
-        age3_6: '',
-        age6_10: 'Ja',
-        age10_15: 'Ja',
-        costs: ''
-      }]
+      data: json
     }
   },
   computed: {
