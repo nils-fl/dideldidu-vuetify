@@ -12,7 +12,9 @@
   "age3_6": "Ja",
   "age6_10": "Ja",
   "age10_15": "Ja",
-  "costs": "Ja"
+  "costs": "Ja",
+  "lat": "53.578466",
+  "lng": "9.968831"
 },{
   "name": "Der Test 02",
   "category": "Theater",
@@ -27,7 +29,9 @@
   "age3_6": "Ja",
   "age6_10": "Ja",
   "age10_15": "Ja",
-  "costs": ""
+  "costs": "",
+  "lat": "53.57843",
+  "lng": "9.96882"
 },{
   "name": "Der Test 03",
   "category": "Festival",
@@ -42,7 +46,9 @@
   "age3_6": "Ja",
   "age6_10": "Ja",
   "age10_15": "Ja",
-  "costs": ""
+  "costs": "",
+  "lat": "53.57842",
+  "lng": "9.96885"
 },{
   "name": "Der Test 04",
   "category": "Konzert",
@@ -57,5 +63,24 @@
   "age3_6": "",
   "age6_10": "Ja",
   "age10_15": "Ja",
-  "costs": ""
+  "costs": "",
+  "lat": "53.57841",
+  "lng": "9.96889"
+},{
+  "name": "Der Test 05",
+  "category": "Theater",
+  "city": "Hamburg",
+  "zip": "12345",
+  "morning": "",
+  "afternoon": "",
+  "evening": "",
+  "ageAll": "Ja",
+  "age0_1": "",
+  "age1_3": "",
+  "age3_6": "",
+  "age6_10": "Ja",
+  "age10_15": "Ja",
+  "costs": "",
+  "lat": "53.57846",
+  "lng": "9.96880"
 }]

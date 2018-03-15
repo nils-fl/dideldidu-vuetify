@@ -142,18 +142,29 @@
             <template>
               <gmap-map
                 :center="center"
-                :zoom="7"
-                style="width: 500px; height: 300px"
+                :zoom="mapZoom"
+                style="width: 100%; height: 200px"
               >
+              <gmap-info-window
+                :options="infoOptions"
+                :position="infoWindowPos"
+                :opened="infoWinOpen"
+                @closeclick="infoWinOpen=false"
+                >
+                {{ infoContent }}
+              </gmap-info-window>
                 <gmap-marker
                   :key="index"
                   v-for="(m, index) in markers"
                   :position="m.position"
                   :clickable="true"
                   :draggable="true"
-                  @click="center=m.position"
+                  @click="toggleInfoWindow(m,i)"
                 ></gmap-marker>
               </gmap-map>
+              <!-- <p>
+                {{ filteredMarkers }}
+              </p> -->
             </template>
           </v-tab-item>
           </v-tabs-items>
@@ -177,24 +188,35 @@ import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
 import MyNavbar from './components/MyNavbar'
 import json from './assets/data'
-import * as VueGoogleMaps from 'vue2-google-maps';
-
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyB_zUS5YNAU6vsP8AayeiD8ZnATKvFv9wI',
-    // libraries: 'places', //// If you need to use place input
-  }
-});
 
 export default {
   data () {
     return {
       // g-map stuff
-      center: {lat: 10.0, lng: 10.0},
+      infoContent: '',
+      infoWindowPos: {
+        lat: 0,
+        lng: 0
+      },
+      infoWinOpen: false,
+      currentMidx: null,
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
+      },
+      mapZoom: 12,
+      center: {
+        lat: 53.562978,
+        lng: 10.005576
+      },
       markers: [{
-        position: {lat: 10.0, lng: 10.0}
-      }, {
-        position: {lat: 11.0, lng: 11.0}
+        position: {
+          lat: 53.578466,
+          lng: 9.968837
+        },
+        infoText: 'Der Kotti'
       }],
       // tabs
       tab: null,
@@ -252,6 +274,16 @@ export default {
     }
   },
   computed: {
+    // filteredMarkers: function(){
+    //   var filterPoints = []
+    //
+    //     filterPoints.push(
+    //       {'lat': this.filteredData[1].lat}
+    //       // {'position':{'lat':lat, 'lng':lng}, 'textInfo':name}
+    //     )
+    //
+    //   return filterPoints
+    // },
     filteredData: function(){
       let filterData = this.data
 
@@ -340,6 +372,21 @@ export default {
       }
 
       return filterData
+    }
+  },
+  methods: {
+    toggleInfoWindow: function(marker, idx) {
+      this.infoWindowPos = marker.position;
+      this.infoContent = marker.infoText;
+      //check if its the same marker that was selected if yes toggle
+      if (this.currentMidx == idx) {
+        this.infoWinOpen = !this.infoWinOpen;
+      }
+      //if different marker set infowindow to open and reset current marker index
+      else {
+        this.infoWinOpen = true;
+        this.currentMidx = idx;
+      }
     }
   },
   name: 'App',
