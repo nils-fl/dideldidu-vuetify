@@ -139,7 +139,22 @@
 
           </v-tab-item>
           <v-tab-item class="mytab" key="map">
-
+            <template>
+              <gmap-map
+                :center="center"
+                :zoom="7"
+                style="width: 500px; height: 300px"
+              >
+                <gmap-marker
+                  :key="index"
+                  v-for="(m, index) in markers"
+                  :position="m.position"
+                  :clickable="true"
+                  :draggable="true"
+                  @click="center=m.position"
+                ></gmap-marker>
+              </gmap-map>
+            </template>
           </v-tab-item>
           </v-tabs-items>
 
@@ -156,15 +171,31 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
 import MyNavbar from './components/MyNavbar'
 import json from './assets/data'
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyB_zUS5YNAU6vsP8AayeiD8ZnATKvFv9wI',
+    // libraries: 'places', //// If you need to use place input
+  }
+});
 
 export default {
   data () {
     return {
+      // g-map stuff
+      center: {lat: 10.0, lng: 10.0},
+      markers: [{
+        position: {lat: 10.0, lng: 10.0}
+      }, {
+        position: {lat: 11.0, lng: 11.0}
+      }],
       // tabs
       tab: null,
       // Searchbar
