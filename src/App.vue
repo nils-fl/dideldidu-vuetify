@@ -139,6 +139,7 @@
 
           </v-tab-item>
           <v-tab-item class="mytab" key="map">
+
           </v-tab-item>
           </v-tabs-items>
 
@@ -164,6 +165,7 @@ import json from './assets/data'
 export default {
   data () {
     return {
+      // tabs
       tab: null,
       // Searchbar
       search: '',
