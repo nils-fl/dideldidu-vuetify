@@ -78,7 +78,16 @@
       <v-layout row justify-center>
         <v-flex xs12 lg10>
 
+<!-- tabs bar here -->
+        <v-tabs grow v-model="tab">
+         <v-tabs-slider color="yellow"></v-tabs-slider>
+         <v-tab key="table">Tabelle</v-tab>
+         <v-tab key="map">Karte</v-tab>
+        </v-tabs>
+
 <!-- filter button and searchbar-->
+        <v-tabs-items v-model="tab">
+          <v-tab-item class="mytab" key="table">
           <v-card-title>
             <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
@@ -128,6 +137,11 @@
 
           </v-data-table>
 
+          </v-tab-item>
+          <v-tab-item class="mytab" key="map">
+          </v-tab-item>
+          </v-tabs-items>
+
         </v-flex>
       </v-layout>
 
@@ -150,6 +164,7 @@ import json from './assets/data'
 export default {
   data () {
     return {
+      tab: null,
       // Searchbar
       search: '',
       // Drawer
@@ -305,6 +320,9 @@ export default {
 </script>
 
 <style scoped>
+.mytab {
+  height: 500px;
+}
 .myswitch {
   margin-left: 11px;
 }
