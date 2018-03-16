@@ -13,8 +13,8 @@
   "age6_10": "Ja",
   "age10_15": "Ja",
   "costs": "Ja",
-  "lat": "53.578466",
-  "lng": "9.968831"
+  "lat": 53.578466,
+  "lng": 9.968831
 },{
   "name": "Der Test 02",
   "category": "Theater",
@@ -30,8 +30,8 @@
   "age6_10": "Ja",
   "age10_15": "Ja",
   "costs": "",
-  "lat": "53.57843",
-  "lng": "9.96882"
+  "lat": 53.57843,
+  "lng": 10.16882
 },{
   "name": "Der Test 03",
   "category": "Festival",
@@ -47,8 +47,8 @@
   "age6_10": "Ja",
   "age10_15": "Ja",
   "costs": "",
-  "lat": "53.57842",
-  "lng": "9.96885"
+  "lat": 53.45842,
+  "lng": 9.86885
 },{
   "name": "Der Test 04",
   "category": "Konzert",
@@ -64,8 +64,8 @@
   "age6_10": "Ja",
   "age10_15": "Ja",
   "costs": "",
-  "lat": "53.57841",
-  "lng": "9.96889"
+  "lat": 53.47841,
+  "lng": 9.76889
 },{
   "name": "Der Test 05",
   "category": "Theater",
@@ -81,6 +81,6 @@
   "age6_10": "Ja",
   "age10_15": "Ja",
   "costs": "",
-  "lat": "53.57846",
-  "lng": "9.96880"
+  "lat": 53.57846,
+  "lng": 10.06880
 }]

@@ -77,6 +77,7 @@
 
       <v-layout row justify-center>
         <v-flex xs12 lg10>
+          <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
 
 <!-- tabs bar here -->
         <v-tabs grow v-model="tab">
@@ -89,7 +90,6 @@
         <v-tabs-items v-model="tab">
           <v-tab-item class="mytab" key="table">
           <v-card-title>
-            <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
             <v-text-field
                 append-icon="search"
@@ -139,11 +139,12 @@
 
           </v-tab-item>
           <v-tab-item class="mytab" key="map">
+<!-- google map -->
             <template>
               <gmap-map
                 :center="center"
                 :zoom="mapZoom"
-                style="width: 100%; height: 200px"
+                style="width: 100%; height: 600px"
               >
               <gmap-info-window
                 :options="infoOptions"
@@ -154,16 +155,16 @@
                 {{ infoContent }}
               </gmap-info-window>
                 <gmap-marker
-                  :key="index"
-                  v-for="(m, index) in markers"
+                  :key="i"
+                  v-for="(m, i) in filteredMarkers"
                   :position="m.position"
                   :clickable="true"
-                  :draggable="true"
                   @click="toggleInfoWindow(m,i)"
                 ></gmap-marker>
               </gmap-map>
-              <!-- <p>
-                {{ filteredMarkers }}
+              <!-- <p v-for="(m, i) in filteredMarkers">
+                {{ m.position }}
+                {{ i }}
               </p> -->
             </template>
           </v-tab-item>
@@ -206,18 +207,11 @@ export default {
           height: -35
         }
       },
-      mapZoom: 12,
+      mapZoom: 10,
       center: {
         lat: 53.562978,
         lng: 10.005576
       },
-      markers: [{
-        position: {
-          lat: 53.578466,
-          lng: 9.968837
-        },
-        infoText: 'Der Kotti'
-      }],
       // tabs
       tab: null,
       // Searchbar
@@ -274,16 +268,31 @@ export default {
     }
   },
   computed: {
-    // filteredMarkers: function(){
-    //   var filterPoints = []
-    //
-    //     filterPoints.push(
-    //       {'lat': this.filteredData[1].lat}
-    //       // {'position':{'lat':lat, 'lng':lng}, 'textInfo':name}
-    //     )
-    //
-    //   return filterPoints
-    // },
+    filteredMarkers: function(){
+      var dataTemp = this.filteredData
+      var filterPoints = []
+
+        if(dataTemp.length>0) {
+
+          for (var i = 0; i < dataTemp.length; i++) {
+            var lat = dataTemp[i].lat
+            var lng = dataTemp[i].lng
+            var name = dataTemp[i].name
+
+            filterPoints.push({
+              'position':{
+                'lat': lat,
+                'lng': lng
+              },
+              'infoText': name
+              }
+            )}
+          }
+        else {
+          return filterPoints = []
+        }
+      return filterPoints
+    },
     filteredData: function(){
       let filterData = this.data
 
@@ -401,7 +410,7 @@ export default {
 
 <style scoped>
 .mytab {
-  height: 500px;
+  height: 600px;
 }
 .myswitch {
   margin-left: 11px;
