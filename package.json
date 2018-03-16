@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
+    "vue-tour": "^1.0.0",
+    "vue-tour-component": "^6.2.0",
     "vue2-google-maps": "^0.8.11",
     "vuetify": "^1.0.0"
   },

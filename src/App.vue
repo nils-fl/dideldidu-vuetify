@@ -1,7 +1,5 @@
 <template>
   <v-app>
-<!-- modal with stepper -->
-    <MyStepper></MyStepper>
 <!-- left drawer containing the checkboxes to filter data -->
     <v-navigation-drawer
       persistent
@@ -79,9 +77,10 @@
       <v-layout row justify-center>
         <v-flex xs12 lg10>
           <v-card-title>
-            <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
+            <v-btn id="v-step-0" color="success" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
             <v-text-field
+            id="v-step-3"
             append-icon="search"
             label="Suchen"
             single-line
@@ -93,8 +92,8 @@
 <!-- tabs bar here -->
         <v-tabs grow v-model="tab">
          <v-tabs-slider color="yellow"></v-tabs-slider>
-         <v-tab key="table">Tabelle</v-tab>
-         <v-tab key="map">Karte</v-tab>
+         <v-tab id="v-step-1" key="table">Tabelle</v-tab>
+         <v-tab id="v-step-4" key="map">Karte</v-tab>
         </v-tabs>
 
 <!-- filter button and searchbar-->
@@ -111,7 +110,7 @@
               item-key="name"
               >
             <template slot="items" slot-scope="props">
-              <tr @click="props.expanded = !props.expanded">
+              <tr @click="props.expanded = !props.expanded" id="v-step-2">
 
                 <td>{{ props.item.name }}</td>
                 <td>{{ props.item.category }}</td>
@@ -143,6 +142,7 @@
 <!-- google map -->
             <template>
               <gmap-map
+                id="v-step-5"
                 :center="center"
                 :zoom="mapZoom"
                 style="width: 100%; height: 600px"
@@ -163,10 +163,6 @@
                   @click="toggleInfoWindow(m,i)"
                 ></gmap-marker>
               </gmap-map>
-              <!-- <p v-for="(m, i) in filteredMarkers">
-                {{ m.position }}
-                {{ i }}
-              </p> -->
             </template>
           </v-tab-item>
           </v-tabs-items>
@@ -178,7 +174,42 @@
       <MyForm></MyForm>
 <!-- footer -->
       <MyFooter></MyFooter>
-
+      <v-tour name="myTour" :steps="steps">
+        <template slot-scope="tour">
+          <transition name="fade">
+            <v-step
+              v-if="tour.currentStep === index"
+              v-for="(step, index) of tour.steps"
+              :key="index"
+              :step="step"
+              :previous-step="tour.previousStep"
+              :next-step="tour.nextStep"
+              :stop="tour.stop"
+              :isFirst="tour.isFirst"
+              :isLast="tour.isLast"
+            >
+              <template v-if="tour.currentStep === 0">
+                <div slot="actions">
+                  <v-btn color="info" @click="tour.stop">schließen</v-btn>
+                  <v-btn color="info" @click="tour.nextStep">weiter</v-btn>
+                </div>
+              </template>
+              <template v-if="tour.currentStep !== 0 && tour.currentStep !== 5">
+                <div slot="actions">
+                  <v-btn color="info" @click="tour.previousStep">zurück</v-btn>
+                  <v-btn color="info" @click="tour.nextStep">weiter</v-btn>
+                </div>
+              </template>
+              <template v-if="tour.currentStep === 5">
+                <div slot="actions">
+                  <v-btn color="info" @click="tour.previousStep">zurück</v-btn>
+                  <v-btn color="info" @click="tour.stop">schließen</v-btn>
+                </div>
+              </template>
+            </v-step>
+          </transition>
+        </template>
+      </v-tour>
     </v-content>
   </v-app>
 </template>
@@ -189,12 +220,39 @@ import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
 import MyNavbar from './components/MyNavbar'
-import MyStepper from './components/MyStepper'
 import json from './assets/data'
 
 export default {
+  name: 'my-tour',
   data () {
     return {
+      // tour steps
+      steps: [
+        {
+          target: '#v-step-0',  // We're using document.querySelector() under the hood
+          content: `Klick hier, um die Veranstaltungen zu filtern.`
+        },
+        {
+          target: '#v-step-1',
+          content: 'Du befindest dich in der Tabellenansicht.'
+        },
+        {
+          target: '#v-step-2',
+          content: 'Klick auf eine Zeile, um mehr Informationen zu erhalten.'
+        },
+        {
+          target: '#v-step-3',
+          content: 'Hier kannst du auch Freitextfiltern.'
+        },
+        {
+          target: '#v-step-4',
+          content: 'Hier kannst du in die Karten Ansicht wechseln.'
+        },
+        {
+          target: '#v-step-5',
+          content: 'Klick auf die Marker, um zu sehen welche Veranstaltung dort ist.'
+        }
+      ],
       // g-map stuff
       infoContent: '',
       infoWindowPos: {
@@ -393,13 +451,15 @@ export default {
       }
     }
   },
+  mounted: function () {
+    this.$tours['myTour'].start()
+  },
   name: 'App',
   components: {
     MyHeader,
     MyFooter,
     MyForm,
-    MyNavbar,
-    MyStepper
+    MyNavbar
   }
 }
 </script>

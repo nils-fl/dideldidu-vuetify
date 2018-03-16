@@ -1,38 +1,41 @@
 <template>
-  <v-stepper v-model="e1">
-    <v-stepper-header>
-      <v-stepper-step step="1" :complete="e1 > 1">Name of step 1</v-stepper-step>
-      <v-divider></v-divider>
-      <v-stepper-step step="2" :complete="e1 > 2">Name of step 2</v-stepper-step>
-      <v-divider></v-divider>
-      <v-stepper-step step="3">Name of step 3</v-stepper-step>
-    </v-stepper-header>
-    <v-stepper-items>
-      <v-stepper-content step="1">
-        <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-        <v-btn color="primary" @click.native="e1 = 2">Continue</v-btn>
-        <v-btn flat>Cancel</v-btn>
-      </v-stepper-content>
-      <v-stepper-content step="2">
-        <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-        <v-btn color="primary" @click.native="e1 = 3">Continue</v-btn>
-        <v-btn flat>Cancel</v-btn>
-      </v-stepper-content>
-      <v-stepper-content step="3">
-        <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-        <v-btn color="primary" @click.native="e1 = 1">Continue</v-btn>
-        <v-btn flat>Cancel</v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
+  <div>
+    <div id="v-step-0"></div>
+    <div id="v-step-1"></div>
+    <div id="v-step-2"></div>
+    <div id="v-step-2"></div>
+
+    <v-tour name="myTour" :steps="steps"></v-tour>
+  </div>
 </template>
 
 <script>
   export default {
+    name: 'my-tour',
     data () {
       return {
-        e1: 0
+        steps: [
+          {
+            target: '#v-step-0',  // We're using document.querySelector() under the hood
+            content: `Klick hier, um die Veranstaltungen zu filtern.`
+          },
+          {
+            target: '#v-step-1',
+            content: 'Hier findest du einen Haufen Filter, um etwas passendes für dich zu finden.'
+          },
+          {
+            target: '#v-step-2',
+            content: 'Wechsel zwischen der Tabelle und der Karte, um zu sehen wo welche Veranstaltung ist.'
+          },
+          {
+            target: '#v-step-3',
+            content: 'Klick auf eine Zeile, um mehr Informationen zu erhalten.'
+          }
+        ]
       }
+    },
+    mounted: function () {
+      this.$tours['myTour'].start()
     }
   }
 </script>
