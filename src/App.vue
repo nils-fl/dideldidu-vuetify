@@ -1,6 +1,7 @@
 <template>
   <v-app>
-
+<!-- modal with stepper -->
+    <MyStepper></MyStepper>
 <!-- left drawer containing the checkboxes to filter data -->
     <v-navigation-drawer
       persistent
@@ -9,11 +10,11 @@
       enable-resize-watcher
       fixed
       app>
-      <v-toolbar flat>
+      <v-toolbar flat dark color="success">
         <v-list>
           <v-list-tile>
-            <v-list-title>
-              Filter
+            <v-list-title class="white--text pl-4 pt-1">
+              <h2>Filter</h2>
             </v-list-title>
           </v-list-tile>
         </v-list>
@@ -21,7 +22,7 @@
       <v-divider></v-divider>
       <v-expansion-panel popout>
         <v-expansion-panel-content>
-          <div slot="header">Was</div>
+          <div slot="header"><h3>Was</h3></div>
           <v-card>
             <v-switch class='myswitch' v-for="category in categories" :label="category" v-model="checkCategory" :value="category"></v-switch>
           </v-card>
@@ -29,7 +30,7 @@
       </v-expansion-panel>
       <v-expansion-panel popout>
         <v-expansion-panel-content>
-          <div slot="header">Wo</div>
+          <div slot="header"><h3>Wo</h3></div>
           <v-card>
             <v-switch class='myswitch' v-for="city in cities" :label="city" v-model="checkCity" :value="city"></v-switch>
           </v-card>
@@ -37,7 +38,7 @@
       </v-expansion-panel>
       <v-expansion-panel popout>
         <v-expansion-panel-content>
-          <div slot="header">Wann</div>
+          <div slot="header"><h3>Wann</h3></div>
           <v-card>
             <v-switch class='myswitch' label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
             <v-switch class='myswitch' label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
@@ -47,7 +48,7 @@
       </v-expansion-panel>
       <v-expansion-panel popout>
         <v-expansion-panel-content>
-          <div slot="header">Welches Alter</div>
+          <div slot="header"><h3>Welches Alter</h3></div>
           <v-card>
             <v-switch class='myswitch' label="Alle" v-model="checkAgeAll" value="Ja"></v-switch>
             <v-switch class='myswitch' label="0 bis 1" v-model="checkAge0_1" value="Ja"></v-switch>
@@ -60,7 +61,7 @@
       </v-expansion-panel>
       <v-expansion-panel popout>
         <v-expansion-panel-content>
-          <div slot="header">Kosten</div>
+          <div slot="header"><h3>Kosten</h3></div>
           <v-card>
             <v-switch class='myswitch' label="Kostenlos" v-model="checkCosts" value="Ja"></v-switch>
           </v-card>
@@ -77,7 +78,17 @@
 
       <v-layout row justify-center>
         <v-flex xs12 lg10>
-          <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
+          <v-card-title>
+            <v-btn color="success" @click.stop="drawer = !drawer">Filter</v-btn>
+            <v-spacer></v-spacer>
+            <v-text-field
+            append-icon="search"
+            label="Suchen"
+            single-line
+            hide-details
+            v-model="search">
+          </v-text-field>
+        </v-card-title>
 
 <!-- tabs bar here -->
         <v-tabs grow v-model="tab">
@@ -89,16 +100,6 @@
 <!-- filter button and searchbar-->
         <v-tabs-items v-model="tab">
           <v-tab-item class="mytab" key="table">
-          <v-card-title>
-            <v-spacer></v-spacer>
-            <v-text-field
-                append-icon="search"
-                label="Suchen"
-                single-line
-                hide-details
-                v-model="search">
-            </v-text-field>
-          </v-card-title>
 
 <!-- data table -->
           <v-data-table
@@ -188,6 +189,7 @@ import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
 import MyNavbar from './components/MyNavbar'
+import MyStepper from './components/MyStepper'
 import json from './assets/data'
 
 export default {
@@ -233,13 +235,6 @@ export default {
       checkAge10_15: [],
       checkAgeAll: [],
       checkCosts: [],
-      items: [{
-        icon: 'location_city',
-        title: 'Wo'
-      },{
-        icon: 'location_city',
-        title: 'Was'
-      }],
       cities: [
         "Hamburg",
         'Düsseldorf',
@@ -403,7 +398,8 @@ export default {
     MyHeader,
     MyFooter,
     MyForm,
-    MyNavbar
+    MyNavbar,
+    MyStepper
   }
 }
 </script>

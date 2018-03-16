@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="header">
     <v-layout row justify-center>
-      <v-flex xs12 lg10  class="header">
+      <v-flex xs12 lg10>
         <v-flex xs12>
           <h1>{{ titel }}</h1>
           <h2>{{ subtitel }}</h2>
