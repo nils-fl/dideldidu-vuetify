@@ -6,11 +6,9 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueTour from 'vue-tour'
-
 require('vue-tour/dist/vue-tour.css')
 
 Vue.use(VueTour)
-
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyB_zUS5YNAU6vsP8AayeiD8ZnATKvFv9wI',
