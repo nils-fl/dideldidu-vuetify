@@ -174,7 +174,7 @@
       <MyForm></MyForm>
 <!-- footer -->
       <MyFooter></MyFooter>
-      <v-tour name="myTour" :steps="steps">
+      <!-- <v-tour name="myTour" :steps="steps">
         <template slot-scope="tour">
           <transition name="fade">
             <v-step
@@ -209,7 +209,7 @@
             </v-step>
           </transition>
         </template>
-      </v-tour>
+      </v-tour> -->
     </v-content>
   </v-app>
 </template>
