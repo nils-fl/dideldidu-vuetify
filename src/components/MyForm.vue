@@ -5,7 +5,10 @@
           <v-card-title>
             <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest uns einfach so etwas sagen, dann schreibe uns gerne eine Nachricht.</h3>
           </v-card-title>
-          <v-form action="https://formspree.io/didelidu.hh@gmail.com" method="POST">
+          <v-form name="nachricht" method="POST" netlify>
+            <p class="hidden">
+              <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+            </p>
             <v-card-text>
               <v-text-field
                 name="input"
@@ -41,8 +44,7 @@ export default {
 </script>
 
 <style scoped>
-.form {
-  /* padding-top: 70px;
-  padding-bottom: 50px; */
+.hidden {
+  visibility: hidden;
 }
 </style>
