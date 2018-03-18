@@ -102,6 +102,7 @@
 
 <!-- data table -->
           <v-data-table
+              class="mytable"
               :headers="headers"
               :items="filteredData"
               no-results-text="Keine Einträge gefunden"
@@ -465,6 +466,14 @@ export default {
 </script>
 
 <style scoped>
+.mytable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .mytab {
   height: 600px;
 }
