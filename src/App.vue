@@ -69,15 +69,15 @@
 
 <!-- Navbar -->
     <v-toolbar
-      class="drawertitle"
+      class="navbar"
       height="40"
       app
       :clipped-left="clipped">
       <v-toolbar-items>
-        <v-btn class="drawertitle" flat @click.stop="drawer = !drawer">Filter</v-btn>
+        <v-btn class="navbt" flat @click.stop="drawer = !drawer">Filter</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
-      <v-toolbar-title class="drawertitle" v-text="title"></v-toolbar-title>
+      <v-toolbar-title class="navbt" v-text="title"></v-toolbar-title>
     </v-toolbar>
 
     <v-content>
@@ -86,6 +86,7 @@
 
       <v-layout row justify-center>
         <v-flex xs12 lg10>
+          <v-card class="tablesec">
           <v-card-title>
             <v-btn id="v-step-0" class="drawertitle" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
@@ -178,11 +179,41 @@
           </v-tab-item>
           </v-tabs-items>
 
+        </v-card>
         </v-flex>
       </v-layout>
 
 <!-- contact form -->
-      <MyForm></MyForm>
+<v-layout row justify-center>
+  <v-flex xs12 lg10>
+    <v-card class="form">
+      <v-card-title>
+        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest uns einfach so etwas sagen, dann schreibe uns gerne eine Nachricht.</h3>
+      </v-card-title>
+      <v-form action="https://formspree.io/didelidu.hh@gmail.com" method="POST">
+        <v-card-text>
+          <v-text-field
+            name="input"
+            placeholder="Dein Name"
+            required
+            v-model="name"
+          ></v-text-field>
+          <v-text-field
+            name="input"
+            placeholder="Deine Nachricht"
+            auto-grow
+            multi-line
+            required
+            v-model="textarea"
+          ></v-text-field>
+        </v-card-text>
+        <v-btn class="drawertitle" type="submit" @click="submit">Senden</v-btn>
+      </v-form>
+    </v-card>
+  </v-flex>
+</v-layout>
+
+
 <!-- footer -->
       <MyFooter></MyFooter>
       <!-- <v-tour name="myTour" :steps="steps">
@@ -229,7 +260,6 @@
 import Vue from 'vue';
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
-import MyForm from './components/MyForm'
 import json from './assets/data'
 
 export default {
@@ -237,6 +267,9 @@ export default {
   data () {
     return {
       title: 'Dideldidu',
+      // Search
+      textarea: '',
+      name: '',
       // tour steps
       steps: [
         {
@@ -468,27 +501,28 @@ export default {
   name: 'App',
   components: {
     MyHeader,
-    MyFooter,
-    MyForm
+    MyFooter
   }
 }
 </script>
 
 <style scoped>
+.tablesec {
+  margin-top: -400px;
+}
 .drawertitle {
-  background-color: #1e3799 !important;
-  color: #fad390 !important;
+  background-color: #eb3b5a !important;
+  color: #fed330 !important;
 }
 .drawersub {
-  background-color: #fad390 !important;
+  background-color: #fed330 !important;
   color: #4b6584 !important;
 }
 .drawersubsub {
-  background-color: #fad390 !important;
+  background-color: #f7b731 !important;
   color: #4b6584 !important;
-  padding-top: 3px;
+  padding-top: 5px;
   padding-left: 11px;
-  margin-bottom: -5px;
 }
 .mytable {
   -webkit-touch-callout: none;
@@ -500,5 +534,17 @@ export default {
 }
 .mytab {
   height: 600px;
+}
+.navbar {
+  background: linear-gradient(to right, #eb3b5a, #fc5c65);
+  background-color: #1e3799 !important;
+  color: #fad390 !important;
+}
+.navbt {
+  background-color: rgba(255, 255, 255,0.0) !important;
+  color: #fed330 !important;
+}
+.form {
+  padding-top: 0px;
 }
 </style>
