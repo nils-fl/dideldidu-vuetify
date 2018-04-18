@@ -22,7 +22,7 @@
                 v-model="textarea"
               ></v-text-field>
             </v-card-text>
-            <v-btn type="submit" color="success" @click="submit">Senden</v-btn>
+            <v-btn class="drawertitle" type="submit" @click="submit">Senden</v-btn>
           </v-form>
       </v-flex>
     </v-layout>
@@ -44,5 +44,9 @@ export default {
 .form {
   /* padding-top: 70px;
   padding-bottom: 50px; */
+}
+.drawertitle {
+  background-color: #1e3799 !important;
+  color: #fad390 !important;
 }
 </style>

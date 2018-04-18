@@ -29,12 +29,13 @@ h1 {
   text-align: center;
   font-weight: bold;
   font-size: 5rem;
-  color: #eb4d4b;
+  color: #eb3b5a;
 }
 h2 {
-  font-weight: normal;
+  font-weight: bold;
   text-align: center;
   font-size: 2rem;
+  color: #fa8231;
 }
 .header {
   background-image: url(../assets/header-bg.png) ;

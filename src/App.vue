@@ -8,67 +8,77 @@
       enable-resize-watcher
       fixed
       app>
-      <v-toolbar flat dark color="success">
+      <v-toolbar class="drawertitle">
         <v-list>
           <v-list-tile>
-            <v-list-title class="white--text pl-4 pt-1">
+            <v-list-title class="drawertitle pl-4 pt-1">
               <h2>Filter</h2>
             </v-list-title>
           </v-list-tile>
         </v-list>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-expansion-panel popout>
-        <v-expansion-panel-content>
-          <div slot="header"><h3>Was</h3></div>
-          <v-card>
-            <v-switch class='myswitch' v-for="category in categories" :label="category" v-model="checkCategory" :value="category"></v-switch>
+      <v-expansion-panel class="drawersub">
+        <v-expansion-panel-content class="drawersub">
+          <div slot="header" class="drawersub"><h3>Was</h3></div>
+          <v-card class='drawersubsub'>
+            <v-switch v-for="category in categories" :label="category" v-model="checkCategory" :value="category"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel popout>
-        <v-expansion-panel-content>
+      <v-expansion-panel class="drawersub">
+        <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Wo</h3></div>
-          <v-card>
-            <v-switch class='myswitch' v-for="city in cities" :label="city" v-model="checkCity" :value="city"></v-switch>
+          <v-card class='drawersubsub'>
+            <v-switch v-for="city in cities" :label="city" v-model="checkCity" :value="city"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel popout>
-        <v-expansion-panel-content>
+      <v-expansion-panel class="drawersub">
+        <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Wann</h3></div>
-          <v-card>
-            <v-switch class='myswitch' label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="Abends" v-model="checkEvening" value="Ja"></v-switch>
+          <v-card class='drawersubsub'>
+            <v-switch label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
+            <v-switch label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
+            <v-switch label="Abends" v-model="checkEvening" value="Ja"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel popout>
-        <v-expansion-panel-content>
+      <v-expansion-panel class="drawersub">
+        <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Welches Alter</h3></div>
-          <v-card>
-            <v-switch class='myswitch' label="Alle" v-model="checkAgeAll" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="0 bis 1" v-model="checkAge0_1" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="1 bis 3" v-model="checkAge1_3" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="3 bis 6" v-model="checkAge3_6" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="6 bis 10" v-model="checkAge6_10" value="Ja"></v-switch>
-            <v-switch class='myswitch' label="10 bis 15" v-model="checkAge10_15" value="Ja"></v-switch>
+          <v-card class='drawersubsub'>
+            <v-switch label="Alle" v-model="checkAgeAll" value="Ja"></v-switch>
+            <v-switch label="0 bis 1" v-model="checkAge0_1" value="Ja"></v-switch>
+            <v-switch label="1 bis 3" v-model="checkAge1_3" value="Ja"></v-switch>
+            <v-switch label="3 bis 6" v-model="checkAge3_6" value="Ja"></v-switch>
+            <v-switch label="6 bis 10" v-model="checkAge6_10" value="Ja"></v-switch>
+            <v-switch label="10 bis 15" v-model="checkAge10_15" value="Ja"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel popout>
-        <v-expansion-panel-content>
+      <v-expansion-panel class="drawersub">
+        <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Kosten</h3></div>
-          <v-card>
-            <v-switch class='myswitch' label="Kostenlos" v-model="checkCosts" value="Ja"></v-switch>
+          <v-card class='drawersubsub'>
+            <v-switch label="Kostenlos" v-model="checkCosts" value="Ja"></v-switch>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-navigation-drawer>
 
 <!-- Navbar -->
-    <MyNavbar></MyNavbar>
+    <v-toolbar
+      class="drawertitle"
+      height="40"
+      app
+      :clipped-left="clipped">
+      <v-toolbar-items>
+        <v-btn class="drawertitle" flat @click.stop="drawer = !drawer">Filter</v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-title class="drawertitle" v-text="title"></v-toolbar-title>
+    </v-toolbar>
 
     <v-content>
 <!-- Header with background image -->
@@ -77,7 +87,7 @@
       <v-layout row justify-center>
         <v-flex xs12 lg10>
           <v-card-title>
-            <v-btn id="v-step-0" color="success" @click.stop="drawer = !drawer">Filter</v-btn>
+            <v-btn id="v-step-0" class="drawertitle" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
             <v-text-field
             id="v-step-3"
@@ -220,13 +230,13 @@ import Vue from 'vue';
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyForm from './components/MyForm'
-import MyNavbar from './components/MyNavbar'
 import json from './assets/data'
 
 export default {
   name: 'my-tour',
   data () {
     return {
+      title: 'Dideldidu',
       // tour steps
       steps: [
         {
@@ -459,13 +469,27 @@ export default {
   components: {
     MyHeader,
     MyFooter,
-    MyForm,
-    MyNavbar
+    MyForm
   }
 }
 </script>
 
 <style scoped>
+.drawertitle {
+  background-color: #1e3799 !important;
+  color: #fad390 !important;
+}
+.drawersub {
+  background-color: #fad390 !important;
+  color: #4b6584 !important;
+}
+.drawersubsub {
+  background-color: #fad390 !important;
+  color: #4b6584 !important;
+  padding-top: 3px;
+  padding-left: 11px;
+  margin-bottom: -5px;
+}
 .mytable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -476,8 +500,5 @@ export default {
 }
 .mytab {
   height: 600px;
-}
-.myswitch {
-  margin-left: 11px;
 }
 </style>

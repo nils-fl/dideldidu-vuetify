@@ -1,10 +1,9 @@
 <template>
   <v-container fluid>
     <v-footer
-          :fixed="fixed"
+          absolute="true"
           app
-          class="footer"
-          >
+          class="footer">
       <span>Nils Flaschel &copy; 2018</span>
     </v-footer>
   </v-container>
@@ -24,7 +23,7 @@ export default {
 <style scoped>
 .footer {
   padding-left: 10px;
-  background-color: #535c68;
+  background-color: rgba(209, 216, 224,0.7);
   color: white;
 }
 </style>
