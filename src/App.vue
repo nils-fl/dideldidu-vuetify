@@ -508,7 +508,9 @@ export default {
 
 <style scoped>
 .tablesec {
-  margin-top: -400px;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .drawertitle {
   background-color: #eb3b5a !important;
@@ -545,6 +547,10 @@ export default {
   color: #fed330 !important;
 }
 .form {
-  padding-top: 0px;
+  margin-top: 70px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 </style>

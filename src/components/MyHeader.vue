@@ -38,8 +38,8 @@ h2 {
   color: #fc5c65;
 }
 .header {
-  background-color: rgba(43, 203, 186,0.4);
-  /* background-image: url(../assets/header-bg.png) ; */
+  /* background-color: rgba(43, 203, 186,0.4); */
+  background-image: url(../assets/header-bg.png) ;
   background-position: center !important;
   background-size: cover !important;
   display: -moz-box !important;
