@@ -35,8 +35,8 @@ export default {
 .footer {
   height: 24px !important;
   padding-left: 10px;
-  background-color: #dfe6e9;
-  color: #2d3436;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 .footerele {
   padding-left: 15px !important;
