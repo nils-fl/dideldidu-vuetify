@@ -1,11 +1,9 @@
 <template>
   <v-container fluid class="header">
     <v-layout row justify-center>
-      <v-flex xs12 lg10>
-        <v-flex xs12>
+      <v-flex xs11 lg10>
           <h1>{{ titel }}</h1>
           <h2>{{ subtitel }}</h2>
-        </v-flex>
       </v-flex>
     </v-layout>
   </v-container>
@@ -26,20 +24,20 @@ export default {
 <style scoped>
 h1 {
   padding-top: 30px;
-  text-align: center;
+  text-align: left;
   font-weight: bold;
-  font-size: 5rem;
-  color: #eb3b5a;
+  font-size: 12vw;
+  color: #636e72;
 }
 h2 {
   font-weight: bold;
-  text-align: center;
-  font-size: 2rem;
-  color: #fc5c65;
+  text-align: left;
+  font-size: 3.5vw;
+  color: #636e72;
 }
 .header {
-  /* background-color: rgba(43, 203, 186,0.4); */
-  background-image: url(../assets/header-bg.png) ;
+  background-color: #f5f6fa;
+  /* background-image: url(../assets/header-bg.png) ; */
   background-position: center !important;
   background-size: cover !important;
   display: -moz-box !important;
@@ -47,9 +45,7 @@ h2 {
   display: -webkit-box !important;
   display: -webkit-flex !important;
   display: flex !important;
-  justify-content: center !important;
-  text-align: center !important;
-  height: 700px !important;
+  height: 66vh !important;
   -webkit-flex-direction: column !important;
   -ms-flex-direction: column !important;
   -webkit-justify-content: center !important;

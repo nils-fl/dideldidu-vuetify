@@ -1,12 +1,23 @@
 <template>
-  <v-container fluid>
     <v-footer
           absolute="true"
           app
           class="footer">
-      <span>Nils Flaschel &copy; 2018</span>
+      <span class="footerele">Nils Flaschel &copy; 2018</span>
+      <v-spacer></v-spacer>
+      <v-dialog v-model="dialog" max-width="290">
+        <a slot="activator" class="footerele">Impressum</a>
+        <v-card>
+          <v-card-title class="headline">Impressum</v-card-title>
+          <v-card-text>
+            Nils Flaschel<br />
+            Kottwitzstraße 35<br />
+            20253 Hamburg<br />
+            dideldidu.hh@gmail.com
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-footer>
-  </v-container>
 </template>
 
 <script>
@@ -22,8 +33,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .footer {
+  height: 24px !important;
   padding-left: 10px;
-  background-color: rgba(209, 216, 224,0.7);
-  color: white;
+  background-color: #dfe6e9;
+  color: #2d3436;
+}
+.footerele {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 </style>

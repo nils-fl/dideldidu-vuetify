@@ -2,13 +2,15 @@
   <v-app>
 <!-- left drawer containing the checkboxes to filter data -->
     <v-navigation-drawer
+      class="drawerfull"
       persistent
       :clipped="clipped"
       v-model="drawer"
       enable-resize-watcher
       fixed
+      flat
       app>
-      <v-toolbar class="drawertitle">
+      <v-toolbar class="drawertitle" flat>
         <v-list>
           <v-list-tile>
             <v-list-title class="drawertitle pl-4 pt-1">
@@ -18,7 +20,7 @@
         </v-list>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-expansion-panel class="drawersub">
+      <v-expansion-panel class="drawersub" flat>
         <v-expansion-panel-content class="drawersub">
           <div slot="header" class="drawersub"><h3>Was</h3></div>
           <v-card class='drawersubsub'>
@@ -26,7 +28,7 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel class="drawersub">
+      <v-expansion-panel class="drawersub" flat>
         <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Wo</h3></div>
           <v-card class='drawersubsub'>
@@ -34,7 +36,7 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel class="drawersub">
+      <v-expansion-panel class="drawersub" flat>
         <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Wann</h3></div>
           <v-card class='drawersubsub'>
@@ -44,7 +46,7 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel class="drawersub">
+      <v-expansion-panel class="drawersub" flat>
         <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Welches Alter</h3></div>
           <v-card class='drawersubsub'>
@@ -57,7 +59,7 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
-      <v-expansion-panel class="drawersub">
+      <v-expansion-panel class="drawersub" flat>
         <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Kosten</h3></div>
           <v-card class='drawersubsub'>
@@ -74,7 +76,7 @@
       app
       :clipped-left="clipped">
       <v-toolbar-items>
-        <v-btn class="navbt" flat @click.stop="drawer = !drawer">Filter</v-btn>
+        <v-btn class="tablebtn" flat @click.stop="drawer = !drawer">Filter</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-title class="navbt" v-text="title"></v-toolbar-title>
@@ -84,14 +86,13 @@
 <!-- Header with background image -->
       <MyHeader></MyHeader>
 
-      <v-layout row justify-center>
+      <v-layout row justify-center class="middle">
         <v-flex xs12 lg10>
           <v-card class="tablesec">
           <v-card-title>
-            <v-btn id="v-step-0" class="drawertitle" @click.stop="drawer = !drawer">Filter</v-btn>
+            <v-btn class="drawertitle" @click.stop="drawer = !drawer">Filter</v-btn>
             <v-spacer></v-spacer>
             <v-text-field
-            id="v-step-3"
             append-icon="search"
             label="Suchen"
             single-line
@@ -103,8 +104,8 @@
 <!-- tabs bar here -->
         <v-tabs grow v-model="tab">
          <v-tabs-slider color="yellow"></v-tabs-slider>
-         <v-tab id="v-step-1" key="table">Tabelle</v-tab>
-         <v-tab id="v-step-4" key="map">Karte</v-tab>
+         <v-tab key="table" class="tabs">Tabelle</v-tab>
+         <v-tab key="map" class="tabs">Karte</v-tab>
         </v-tabs>
 
 <!-- filter button and searchbar-->
@@ -122,7 +123,7 @@
               item-key="name"
               >
             <template slot="items" slot-scope="props">
-              <tr @click="props.expanded = !props.expanded" id="v-step-2">
+              <tr @click="props.expanded = !props.expanded">
 
                 <td>{{ props.item.name }}</td>
                 <td>{{ props.item.category }}</td>
@@ -154,7 +155,6 @@
 <!-- google map -->
             <template>
               <gmap-map
-                id="v-step-5"
                 :center="center"
                 :zoom="mapZoom"
                 style="width: 100%; height: 600px"
@@ -184,22 +184,24 @@
       </v-layout>
 
 <!-- contact form -->
-<v-layout row justify-center>
+<v-layout row justify-center class="end">
   <v-flex xs12 lg10>
     <v-card class="form">
       <v-card-title>
-        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest uns einfach so etwas sagen, dann schreibe uns gerne eine Nachricht.</h3>
+        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest mir einfach so etwas sagen, dann schreibe mir gerne eine Nachricht.</h3>
       </v-card-title>
-      <v-form action="https://formspree.io/didelidu.hh@gmail.com" method="POST">
+      <v-form action="https://formspree.io/dideldidu.hh@gmail.com" method="POST">
         <v-card-text>
           <v-text-field
-            name="input"
+            name="name"
+            type="text"
             placeholder="Dein Name"
             required
             v-model="name"
           ></v-text-field>
           <v-text-field
-            name="input"
+            name="nachricht"
+            type="text"
             placeholder="Deine Nachricht"
             auto-grow
             multi-line
@@ -207,7 +209,7 @@
             v-model="textarea"
           ></v-text-field>
         </v-card-text>
-        <v-btn class="drawertitle" type="submit" @click="submit">Senden</v-btn>
+        <v-btn class="formbtn" type="submit" @click="submit">Senden</v-btn>
       </v-form>
     </v-card>
   </v-flex>
@@ -216,42 +218,6 @@
 
 <!-- footer -->
       <MyFooter></MyFooter>
-      <!-- <v-tour name="myTour" :steps="steps">
-        <template slot-scope="tour">
-          <transition name="fade">
-            <v-step
-              v-if="tour.currentStep === index"
-              v-for="(step, index) of tour.steps"
-              :key="index"
-              :step="step"
-              :previous-step="tour.previousStep"
-              :next-step="tour.nextStep"
-              :stop="tour.stop"
-              :isFirst="tour.isFirst"
-              :isLast="tour.isLast"
-            >
-              <template v-if="tour.currentStep === 0">
-                <div slot="actions">
-                  <v-btn color="info" @click="tour.stop">schließen</v-btn>
-                  <v-btn color="info" @click="tour.nextStep">weiter</v-btn>
-                </div>
-              </template>
-              <template v-if="tour.currentStep !== 0 && tour.currentStep !== 5">
-                <div slot="actions">
-                  <v-btn color="info" @click="tour.previousStep">zurück</v-btn>
-                  <v-btn color="info" @click="tour.nextStep">weiter</v-btn>
-                </div>
-              </template>
-              <template v-if="tour.currentStep === 5">
-                <div slot="actions">
-                  <v-btn color="info" @click="tour.previousStep">zurück</v-btn>
-                  <v-btn color="info" @click="tour.stop">schließen</v-btn>
-                </div>
-              </template>
-            </v-step>
-          </transition>
-        </template>
-      </v-tour> -->
     </v-content>
   </v-app>
 </template>
@@ -270,33 +236,6 @@ export default {
       // Search
       textarea: '',
       name: '',
-      // tour steps
-      steps: [
-        {
-          target: '#v-step-0',  // We're using document.querySelector() under the hood
-          content: `Klick hier, um die Veranstaltungen zu filtern.`
-        },
-        {
-          target: '#v-step-1',
-          content: 'Du befindest dich in der Tabellenansicht.'
-        },
-        {
-          target: '#v-step-2',
-          content: 'Klick auf eine Zeile, um mehr Informationen zu erhalten.'
-        },
-        {
-          target: '#v-step-3',
-          content: 'Hier kannst du auch Freitextfiltern.'
-        },
-        {
-          target: '#v-step-4',
-          content: 'Hier kannst du in die Karten Ansicht wechseln.'
-        },
-        {
-          target: '#v-step-5',
-          content: 'Klick auf die Marker, um zu sehen welche Veranstaltung dort ist.'
-        }
-      ],
       // g-map stuff
       infoContent: '',
       infoWindowPos: {
@@ -508,21 +447,24 @@ export default {
 
 <style scoped>
 .tablesec {
-  margin-top: 20px;
+  margin-top: 5%;
   padding-left: 10px;
   padding-right: 10px;
 }
+.drawerfull {
+  background-color: #dfe6e9 !important;
+}
 .drawertitle {
-  background-color: #eb3b5a !important;
-  color: #fed330 !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 .drawersub {
-  background-color: #fed330 !important;
-  color: #4b6584 !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 .drawersubsub {
-  background-color: #f7b731 !important;
-  color: #4b6584 !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
   padding-top: 5px;
   padding-left: 11px;
 }
@@ -537,20 +479,78 @@ export default {
 .mytab {
   height: 600px;
 }
+.tabs {
+  background-color: #dfe6e9;
+  -webkit-transition: background-color 0.6s;
+  -moz-transition:    background-color 0.6s;
+  -ms-transition:     background-color 0.6s;
+  -o-transition:      background-color 0.6s;
+  transition:         background-color 0.6s;
+}
+.tabs:hover {
+  background-color: #b2bec3;
+}
 .navbar {
-  background: linear-gradient(to right, #eb3b5a, #fc5c65);
-  background-color: #1e3799 !important;
-  color: #fad390 !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 .navbt {
-  background-color: rgba(255, 255, 255,0.0) !important;
-  color: #fed330 !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
+}
+.tablebtn {
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
+}
+.formbtn {
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 .form {
-  margin-top: 70px;
+  margin-top: 10%;
   padding-bottom: 30px;
   padding-top: 30px;
   padding-left: 10px;
   padding-right: 10px;
+}
+.middle {
+  background-color: #f5f6fa;
+  background-position: center !important;
+  background-size: cover !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+  height: 900px !important;
+  -webkit-flex-direction: column !important;
+  -ms-flex-direction: column !important;
+  -webkit-justify-content: center !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-pack: center !important;
+  -webkit-box-pack: center !important;
+}
+.end {
+  background-color: #f5f6fa;
+  background-position: center !important;
+  background-size: cover !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+  height: 800px !important;
+  -webkit-flex-direction: column !important;
+  -ms-flex-direction: column !important;
+  -webkit-justify-content: center !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-pack: center !important;
+  -webkit-box-pack: center !important;
 }
 </style>
