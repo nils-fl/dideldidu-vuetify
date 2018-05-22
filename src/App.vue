@@ -79,6 +79,16 @@
         <v-btn class="tablebtn" flat @click.stop="drawer = !drawer">Filter</v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
+      <v-dialog v-model="dialog" max-width="290">
+        <a slot="activator" class="ueber">Über</a>
+        <v-card>
+          <v-card-title class="headline">Über Dideldidu</v-card-title>
+          <v-card-text>
+            Dies soll eine kleine praktische Seite für Eltern werden, die schnell Veranstaltungen wie Flohmärkte oder Kinderkonzerte in ihrer Gegend finden möchten. Diese Seite ist nicht kommerziell!<br />
+            Die Motivation für diese Seite kommt besonders daher, dass ich als Vater zweier Mädels nicht ständig auf der gleichen Seite mit den gleichen veralteten Tipps landen wollte. Ziel ist es, mit praktischen Filtern und einer Karte schnell alles im Blick zu haben.
+          </v-card-text>
+        </v-card>
+      </v-dialog>
       <v-toolbar-title class="navbt" v-text="title"></v-toolbar-title>
     </v-toolbar>
 
@@ -188,7 +198,7 @@
   <v-flex xs12 lg10>
     <v-card class="form">
       <v-card-title>
-        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest mir einfach so etwas sagen, dann schreibe mir gerne eine Nachricht.</h3>
+        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest mir einfach so etwas sagen, dann schreibe mir gerne eine Nachricht.<br /> Für Veranstaltungen bitte Name, Ort, Datum, Uhrzeit und am besten einen Link angeben falls möglich.</h3>
       </v-card-title>
       <v-form action="https://formspree.io/dideldidu.hh@gmail.com" method="POST">
         <v-card-text>
@@ -196,16 +206,21 @@
             name="name"
             type="text"
             placeholder="Dein Name"
-            required
+            v-model="name"
+          ></v-text-field>
+          <v-text-field
+            name="email"
+            type="text"
+            placeholder="Deine E-Mail Adresse (freiwillig, nur für eventuelle Rückfragen)"
             v-model="name"
           ></v-text-field>
           <v-text-field
             name="nachricht"
             type="text"
+            label=""
             placeholder="Deine Nachricht"
             auto-grow
             multi-line
-            required
             v-model="textarea"
           ></v-text-field>
         </v-card-text>
@@ -507,6 +522,7 @@ export default {
   color: #2d3436 !important;
 }
 .form {
+  text-align: left;
   margin-top: 10%;
   padding-bottom: 30px;
   padding-top: 30px;
@@ -552,5 +568,11 @@ export default {
   -webkit-box-direction: normal !important;
   -ms-flex-pack: center !important;
   -webkit-box-pack: center !important;
+}
+.ueber {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  background-color: #dfe6e9 !important;
+  color: #2d3436 !important;
 }
 </style>
