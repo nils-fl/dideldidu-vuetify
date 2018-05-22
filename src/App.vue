@@ -38,29 +38,6 @@
       </v-expansion-panel>
       <v-expansion-panel class="drawersub" flat>
         <v-expansion-panel-content class='drawersub'>
-          <div slot="header"><h3>Wann</h3></div>
-          <v-card class='drawersubsub'>
-            <v-switch label="Morgens" v-model="checkMorning" value="Ja"></v-switch>
-            <v-switch label="Nachmittags" v-model="checkAfternoon" value="Ja"></v-switch>
-            <v-switch label="Abends" v-model="checkEvening" value="Ja"></v-switch>
-          </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <v-expansion-panel class="drawersub" flat>
-        <v-expansion-panel-content class='drawersub'>
-          <div slot="header"><h3>Welches Alter</h3></div>
-          <v-card class='drawersubsub'>
-            <v-switch label="Alle" v-model="checkAgeAll" value="Ja"></v-switch>
-            <v-switch label="0 bis 1" v-model="checkAge0_1" value="Ja"></v-switch>
-            <v-switch label="1 bis 3" v-model="checkAge1_3" value="Ja"></v-switch>
-            <v-switch label="3 bis 6" v-model="checkAge3_6" value="Ja"></v-switch>
-            <v-switch label="6 bis 10" v-model="checkAge6_10" value="Ja"></v-switch>
-            <v-switch label="10 bis 15" v-model="checkAge10_15" value="Ja"></v-switch>
-          </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <v-expansion-panel class="drawersub" flat>
-        <v-expansion-panel-content class='drawersub'>
           <div slot="header"><h3>Kosten</h3></div>
           <v-card class='drawersubsub'>
             <v-switch label="Kostenlos" v-model="checkCosts" value="Ja"></v-switch>
@@ -80,7 +57,7 @@
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-dialog v-model="dialog" max-width="290">
-        <a slot="activator" class="ueber">Über</a>
+        <v-btn flat slot="activator" class="tablebtn">Über</v-btn>
         <v-card>
           <v-card-title class="headline">Über Dideldidu</v-card-title>
           <v-card-text>
@@ -137,7 +114,7 @@
 
                 <td>{{ props.item.name }}</td>
                 <td>{{ props.item.category }}</td>
-                <td>{{ props.item.city }}</td>
+                <td>{{ props.item.street }}</td>
               </tr>
               </template>
 
@@ -148,11 +125,13 @@
                    <v-flex xs6>
                      <v-card-text><h4>Name:</h4> {{ props.item.name }}</v-card-text>
                      <v-card-text><h4>Kategorie:</h4> {{ props.item.category }}</v-card-text>
+                     <v-card-text><h4>Extras:</h4> {{ props.item.extra }}</v-card-text>
                      <v-card-text v-if="props.item.costs == 'Ja'"><h4>Kostelos</h4></v-card-text>
                    </v-flex>
                    <v-flex xs6>
+                     <v-card-text><h4>Straße:</h4> {{ props.item.street }}</v-card-text>
+                     <v-card-text><h4>Uhrzeit:</h4> {{ props.item.time }}</v-card-text>
                      <v-card-text><h4>Stadt:</h4> {{ props.item.city }}</v-card-text>
-                     <v-card-text><h4>PLZ:</h4> {{ props.item.zip }}</v-card-text>
                    </v-flex>
                  </v-layout>
                </v-card>
@@ -198,7 +177,7 @@
   <v-flex xs12 lg10>
     <v-card class="form">
       <v-card-title>
-        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest mir einfach so etwas sagen, dann schreibe mir gerne eine Nachricht.<br /> Für Veranstaltungen bitte Name, Ort, Datum, Uhrzeit und am besten einen Link angeben falls möglich.</h3>
+        <h3>Du möchtest eine Veranstaltung melden, kennst einen Ort für Kinder oder Eltern der hier noch nicht eingetragen ist, oder möchtest mir einfach so etwas sagen? Dann schreibe mir gerne eine Nachricht.<br /> Für Veranstaltungen bitte Name, Ort, Datum, Uhrzeit und am besten einen Link angeben falls möglich.</h3>
       </v-card-title>
       <v-form action="https://formspree.io/dideldidu.hh@gmail.com" method="POST">
         <v-card-text>
@@ -244,7 +223,6 @@ import MyFooter from './components/MyFooter'
 import json from './assets/data'
 
 export default {
-  name: 'my-tour',
   data () {
     return {
       title: 'Dideldidu',
@@ -265,10 +243,10 @@ export default {
           height: -35
         }
       },
-      mapZoom: 10,
+      mapZoom: 13,
       center: {
-        lat: 53.562978,
-        lng: 10.005576
+        lat: 53.567,
+        lng: 10.00
       },
       // tabs
       tab: null,
@@ -281,24 +259,12 @@ export default {
       // checkboxes
       checkCity: [],
       checkCategory: [],
-      checkMorning: [],
-      checkAfternoon: [],
-      checkEvening: [],
-      checkAge0_1: [],
-      checkAge1_3: [],
-      checkAge3_6: [],
-      checkAge6_10: [],
-      checkAge10_15: [],
-      checkAgeAll: [],
       checkCosts: [],
       cities: [
-        "Hamburg",
-        'Düsseldorf',
-        'Köln',
-        'Bielefeld'
+        "Hamburg"
       ],
       categories: [
-        "Spielplatz",
+        "Flohmarkt",
         "Theater",
         "Festival",
         "Sport",
@@ -312,8 +278,8 @@ export default {
         text: 'Was',
         value: 'category'
       },{
-        text: 'Wo',
-        value: 'city'
+        text: 'Straße',
+        value: 'street'
       }],
       data: json
     }
@@ -358,69 +324,6 @@ export default {
       if (this.checkCity.length > 0){
         filterData = filterData.filter(data => {
           return this.checkCity.includes(data.city)
-        })
-      }
-
-      // Filter for morning
-      if (this.checkMorning.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkMorning.includes(data.morning)
-        })
-      }
-
-      // Filter for afternoon
-      if (this.checkAfternoon.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAfternoon.includes(data.afternoon)
-        })
-      }
-
-      // Filter for evening
-      if (this.checkEvening.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkEvening.includes(data.evening)
-        })
-      }
-
-      //Filter for age 0-1
-      if (this.checkAge0_1.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAge0_1.includes(data.age0_1)
-        })
-      }
-
-      //Filter for age 1-3
-      if (this.checkAge1_3.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAge1_3.includes(data.age1_3)
-        })
-      }
-
-      //Filter for age 3-6
-      if (this.checkAge3_6.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAge3_6.includes(data.age3_6)
-        })
-      }
-
-      //Filter for age 6-10
-      if (this.checkAge6_10.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAge6_10.includes(data.age6_10)
-        })
-      }
-
-      //Filter for age 10-15
-      if (this.checkAge10_15.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAge10_15.includes(data.age10_15)
-        })
-      }
-
-      //Filter for age all
-      if (this.checkAgeAll.length > 0){
-        filterData = filterData.filter(data => {
-          return this.checkAgeAll.includes(data.ageAll)
         })
       }
 
@@ -568,11 +471,5 @@ export default {
   -webkit-box-direction: normal !important;
   -ms-flex-pack: center !important;
   -webkit-box-pack: center !important;
-}
-.ueber {
-  padding-left: 15px !important;
-  padding-right: 15px !important;
-  background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
 }
 </style>
