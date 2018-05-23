@@ -96,7 +96,7 @@
         </v-tabs>
 
 <!-- filter button and searchbar-->
-        <v-tabs-items v-model="tab">
+        <v-tabs-items v-model="tab" touchless="true">
           <v-tab-item class="mytab" key="table">
 
 <!-- data table -->
