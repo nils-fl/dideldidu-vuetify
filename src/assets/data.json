@@ -9,7 +9,7 @@
   "zip": "20253",
   "lat": 53.580532,
   "lng": 9.971422,
-  "costs": "Ja"
+  "free": "Ja"
 },{
   "name": "Flohmarkt Wehbers Park",
   "extra": "Vor dem Spielhaus",
@@ -21,7 +21,7 @@
   "zip": "20259",
   "lat": 53.572493,
   "lng": 9.954465,
-  "costs": "Ja"
+  "free": "Ja"
 },{
   "name": "Flohmarkt Rund ums Kind",
   "extra": "Kita Bethlehem, Ausweichtermin bei Regen: 3.6.18",
@@ -33,5 +33,17 @@
   "zip": "20255",
   "lat": 53.577126,
   "lng": 9.963186,
-  "costs": "Ja"
+  "free": "Ja"
+},{
+  "name": "Sommerfest für Klein und Groß",
+  "extra": "Mitmachzirkus, Kaffee und Kuchen, Spiele, Musik etc.",
+  "category": "Fest",
+  "city": "Hamburg",
+  "street": "Wrangelstr/Gärtnerstr (Geisterspielplatz)",
+  "date": "25.05.2018",
+  "time": "Ab 14:00 Uhr",
+  "zip": "20255",
+  "lat": 53.582357,
+  "lng": 9.969044,
+  "free": "Ja"
 }]

@@ -126,7 +126,7 @@
                      <v-card-text><h4>Name:</h4> {{ props.item.name }}</v-card-text>
                      <v-card-text><h4>Kategorie:</h4> {{ props.item.category }}</v-card-text>
                      <v-card-text><h4>Extras:</h4> {{ props.item.extra }}</v-card-text>
-                     <v-card-text v-if="props.item.costs == 'Ja'"><h4>Kostelos</h4></v-card-text>
+                     <v-card-text v-if="props.item.free == 'Ja'"><h4>Kostelos</h4></v-card-text>
                    </v-flex>
                    <v-flex xs6>
                      <v-card-text><h4>Straße:</h4> {{ props.item.street }}</v-card-text>
@@ -266,7 +266,7 @@ export default {
       categories: [
         "Flohmarkt",
         "Theater",
-        "Festival",
+        "Fest",
         "Sport",
         "Konzert",
         "Museum"
@@ -330,7 +330,7 @@ export default {
       //Filter for costs
       if (this.checkCosts.length > 0){
         filterData = filterData.filter(data => {
-          return this.checkCosts.includes(data.costs)
+          return this.checkCosts.includes(data.free)
         })
       }
 
