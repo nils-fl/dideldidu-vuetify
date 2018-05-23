@@ -7,6 +7,7 @@
       :clipped="clipped"
       v-model="drawer"
       enable-resize-watcher
+      touchless="true"
       fixed
       flat
       app>
