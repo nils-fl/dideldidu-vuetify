@@ -115,6 +115,7 @@
                 <td>{{ props.item.name }}</td>
                 <td>{{ props.item.category }}</td>
                 <td>{{ props.item.street }}</td>
+                <td>{{ props.item.date }}</td>
               </tr>
               </template>
 
@@ -273,13 +274,20 @@ export default {
       ],
       headers:[{
         text: 'Name',
-        value: 'name'
+        value: 'name',
+        align: 'left'
       },{
         text: 'Was',
-        value: 'category'
+        value: 'category',
+        align: 'left'
       },{
         text: 'Straße',
-        value: 'street'
+        value: 'street',
+        align: 'left'
+      },{
+        text: 'Datum',
+        value: 'date2',
+        align: 'left'
       }],
       data: json
     }
@@ -442,7 +450,7 @@ export default {
   display: -webkit-flex !important;
   display: flex !important;
   justify-content: center !important;
-  text-align: center !important;
+  text-align: left !important;
   height: 900px !important;
   -webkit-flex-direction: column !important;
   -ms-flex-direction: column !important;
