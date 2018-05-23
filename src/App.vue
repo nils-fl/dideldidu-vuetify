@@ -374,15 +374,15 @@ export default {
 }
 .drawertitle {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
 }
 .drawersub {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
 }
 .drawersubsub {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
   padding-top: 5px;
   padding-left: 11px;
 }
@@ -410,19 +410,19 @@ export default {
 }
 .navbar {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
 }
 .navbt {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
 }
 .tablebtn {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
 }
 .formbtn {
   background-color: #dfe6e9 !important;
-  color: #2d3436 !important;
+  color: #20bf6b !important;
 }
 .form {
   text-align: left;

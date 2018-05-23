@@ -27,13 +27,13 @@ h1 {
   text-align: left;
   font-weight: bold;
   font-size: 12vw;
-  color: #636e72;
+  color: #20bf6b;
 }
 h2 {
   font-weight: bold;
   text-align: left;
   font-size: 3.5vw;
-  color: #636e72;
+  color: #20bf6b;
 }
 .header {
   background-color: #f5f6fa;
