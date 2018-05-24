@@ -77,7 +77,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .footer {
-  height: 24px !important;
+  height: 32px !important;
   padding-left: 10px;
   background-color: #dfe6e9 !important;
   color: #2d3436 !important;
