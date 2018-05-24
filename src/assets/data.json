@@ -63,4 +63,17 @@
   "lat": 53.581952,
   "lng": 9.967480,
   "free": "Ja"
+},{
+  "name": "Kinderflohmarkt",
+  "extra": "Auch Schwangerschaftskleidung",
+  "category": "Flohmarkt",
+  "city": "Hamburg",
+  "street": "Brahmsallee 38-44",
+  "date": "03.06.2018",
+  "date2": "1527976800",
+  "time": "12:00 bis 17:00 Uhr",
+  "zip": "20144",
+  "lat": 53.575985,
+  "lng": 9.981800,
+  "free": "Ja"
 }]

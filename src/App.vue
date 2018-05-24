@@ -278,16 +278,16 @@ export default {
         value: 'name',
         align: 'left'
       },{
+        text: 'Datum',
+        value: 'date2',
+        align: 'left'
+      },{
         text: 'Was',
         value: 'category',
         align: 'left'
       },{
         text: 'Straße',
         value: 'street',
-        align: 'left'
-      },{
-        text: 'Datum',
-        value: 'date2',
         align: 'left'
       }],
       data: json
