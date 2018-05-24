@@ -1,4 +1,17 @@
 [{
+  "name": "Sommerfest für Klein und Groß",
+  "extra": "Mitmachzirkus, Kaffee und Kuchen, Spiele, Musik etc.",
+  "category": "Fest",
+  "city": "Hamburg",
+  "street": "Wrangelstr/Gärtnerstr (Geisterspielplatz)",
+  "date": "25.05.2018",
+  "date2": "1527260400",
+  "time": "Ab 14:00 Uhr",
+  "zip": "20255",
+  "lat": 53.582357,
+  "lng": 9.969044,
+  "free": "Ja"
+},{
   "name": "Garagen-Flohmarkt",
   "extra": "Nicht nur Kindersachen",
   "category": "Flohmarkt",
@@ -10,19 +23,6 @@
   "zip": "20253",
   "lat": 53.580532,
   "lng": 9.971422,
-  "free": "Ja"
-},{
-  "name": "Flohmarkt Wehbers Park",
-  "extra": "Vor dem Spielhaus",
-  "category": "Flohmarkt",
-  "city": "Hamburg",
-  "street": "Emilienstraße 55",
-  "date": "01.06.2018",
-  "date2": "1527865200",
-  "time": "15:00 bis 18:00 Uhr",
-  "zip": "20259",
-  "lat": 53.572493,
-  "lng": 9.954465,
   "free": "Ja"
 },{
   "name": "Flohmarkt Rund ums Kind",
@@ -38,16 +38,29 @@
   "lng": 9.963186,
   "free": "Ja"
 },{
-  "name": "Sommerfest für Klein und Groß",
-  "extra": "Mitmachzirkus, Kaffee und Kuchen, Spiele, Musik etc.",
-  "category": "Fest",
+  "name": "Flohmarkt Wehbers Park",
+  "extra": "Vor dem Spielhaus",
+  "category": "Flohmarkt",
   "city": "Hamburg",
-  "street": "Wrangelstr/Gärtnerstr (Geisterspielplatz)",
-  "date": "25.05.2018",
-  "date2": "1527260400",
-  "time": "Ab 14:00 Uhr",
-  "zip": "20255",
-  "lat": 53.582357,
-  "lng": 9.969044,
+  "street": "Emilienstraße 55",
+  "date": "01.06.2018",
+  "date2": "1527865200",
+  "time": "15:00 bis 18:00 Uhr",
+  "zip": "20259",
+  "lat": 53.572493,
+  "lng": 9.954465,
+  "free": "Ja"
+},{
+  "name": "Kita Flohmarkt",
+  "extra": "Kita Elbkinder mit Kaffee und Kuchen",
+  "category": "Flohmarkt",
+  "city": "Hamburg",
+  "street": "Wrangelstr 83",
+  "date": "02.06.2018",
+  "date2": "1527951600",
+  "time": "10:00 bis 14:00 Uhr",
+  "zip": "20253",
+  "lat": 53.581952,
+  "lng": 9.967480,
   "free": "Ja"
 }]
