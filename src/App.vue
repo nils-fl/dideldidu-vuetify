@@ -114,9 +114,9 @@
               <tr @click="props.expanded = !props.expanded">
 
                 <td>{{ props.item.name }}</td>
+                <td>{{ props.item.date }}</td>
                 <td>{{ props.item.category }}</td>
                 <td>{{ props.item.street }}</td>
-                <td>{{ props.item.date }}</td>
               </tr>
               </template>
 
